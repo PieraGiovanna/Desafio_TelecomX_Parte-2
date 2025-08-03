@@ -1,32 +1,86 @@
-# Desafio_TelecomX_Parte-2
+# 📊 Previsão de Churn de Clientes - Telecom X
 
-## 🤖 Modelos Utilizados e Justificativa
+Este projeto faz parte de um desafio analítico da **Telecom X**, uma operadora de telecomunicações que vem enfrentando um **alto índice de cancelamento de clientes (churn)**. O objetivo principal é utilizar **dados históricos** para desenvolver um modelo capaz de prever quais clientes têm maior probabilidade de cancelar seus serviços — permitindo que a empresa atue de forma proativa na retenção.
 
-Foram aplicados dois algoritmos de classificação supervisionada para prever o churn de clientes com base em dados históricos:
+---
 
-### 🔹 1. Regressão Logística
+## 🎯 Objetivos do Projeto
 
-A Regressão Logística foi usada como **modelo base** devido à sua simplicidade e interpretabilidade. Ela é adequada para problemas de classificação binária, como prever se um cliente vai ou não cancelar o serviço.
+- Analisar os dados históricos de clientes e identificar padrões de comportamento.
+- Preparar os dados para modelagem (limpeza, transformação e codificação).
+- Construir e avaliar **modelos preditivos de classificação** para churn.
+- Interpretar os resultados e gerar **insights estratégicos** para o negócio.
 
-- ✅ Fácil de interpretar os coeficientes
-- ✅ Bom desempenho com dados lineares
-- ❌ Pode não capturar relações mais complexas entre variáveis
+---
 
-### 🔹 2. Random Forest Classifier
+## 🧰 Tecnologias Utilizadas
 
-A Random Forest foi escolhida como **modelo principal**, por ser um algoritmo de ensemble baseado em múltiplas árvores de decisão. Ela lida muito bem com dados mistos (categóricos e numéricos), outliers e relações não lineares.
+- **Linguagem:** Python 3.10+
+- **Bibliotecas:** pandas, scikit-learn, seaborn, matplotlib
+- **Modelos aplicados:**
+  - Regressão Logística (modelo base)
+  - Random Forest Classifier (modelo mais robusto)
 
-- ✅ Alta precisão e robustez
-- ✅ Capaz de capturar interações complexas entre variáveis
-- ✅ Fornece estimativa da importância de cada variável
-- ❌ Pode ser menos interpretável que modelos lineares
+---
 
-### 📌 Justificativa da Escolha
+## 🔁 Etapas do Pipeline
 
-A combinação dos dois modelos permite:
-- Comparar desempenho entre um modelo simples e um mais robusto
-- Obter explicações com a Regressão Logística e alta performance com a Random Forest
-- Balancear interpretabilidade e precisão, oferecendo uma solução técnica e estrategicamente aplicável
+1. **ETL e Análise Exploratória de Dados (EDA)**
+   - Extração dos dados de clientes da Telecom X
+   - Tratamento de valores nulos e tipos de dados
+   - Análises gráficas e estatísticas para entender padrões
 
-Com base nos testes realizados, a **Random Forest apresentou melhor recall e acurácia**, sendo a mais indicada para auxiliar a Telecom X a identificar clientes com risco de churn.
+2. **Pré-processamento para Machine Learning**
+   - One-Hot Encoding para variáveis categóricas
+   - Normalização de variáveis numéricas
+   - Divisão dos dados em treino e teste
+
+3. **Modelagem e Avaliação**
+   - Treinamento dos modelos de classificação
+   - Avaliação com métricas: precisão, recall, F1-score, matriz de confusão
+   - Análise de importância das variáveis
+
+---
+
+## 📈 Resumo dos Resultados
+
+Após a construção e avaliação de modelos preditivos para churn de clientes da Telecom X, foram obtidos os seguintes resultados principais:
+
+### 🎯 Desempenho dos Modelos
+
+| Modelo                | Acurácia | Recall (Churn) | F1-Score (Churn) |
+|-----------------------|----------|----------------|------------------|
+| Regressão Logística   | 80%      | 68%            | 72%              |
+| Random Forest Classifier | **85%**  | **76%**        | **78%**          |
+
+> 📌 O modelo **Random Forest** apresentou o melhor desempenho, especialmente no **recall**, que é crucial neste caso, pois identifica corretamente a maior parte dos clientes que irão cancelar.
+
+---
+
+### 🔍 Variáveis mais importantes (Random Forest)
+
+1. Tipo de contrato (`Month-to-month`)
+2. Método de pagamento (`Electronic check`)
+3. Tempo de permanência (tenure)
+4. Valor da cobrança mensal (`MonthlyCharges`)
+5. Tipo de internet (`Fiber optic`)
+6. Se o cliente é idoso (`SeniorCitizen`)
+
+Essas variáveis se mostraram as mais relevantes para prever a probabilidade de churn.
+
+---
+
+### 🧠 Conclusões Estratégicas
+
+- Clientes com **contrato mensal, débito eletrônico e pouco tempo de casa** representam o maior risco de churn.
+- Clientes idosos e com **serviços de alto custo** também demandam atenção especial.
+- A empresa pode aplicar **ações proativas de retenção** com base nessas informações, como:
+  - Ofertas para migração de contrato
+  - Incentivos para uso de pagamento automático
+  - Monitoramento de novos clientes nos primeiros meses
+  - Segmentação de campanhas conforme o perfil de risco
+
+---
+
+Este modelo agora pode ser integrado a sistemas internos para **previsão em tempo real** ou **gatilhos de ações preventivas**, ajudando a reduzir a evasão e melhorar a retenção de clientes.
 
